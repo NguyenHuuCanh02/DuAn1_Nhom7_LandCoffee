@@ -1,0 +1,1 @@
+insert into TAIKHOAN VALUES ('TK001','001',1)
