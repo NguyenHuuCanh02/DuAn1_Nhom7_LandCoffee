@@ -37,8 +37,9 @@ public class NhanVien_DAO extends LandCoffee_DAO<NhanVien, String> {
     @Override
     public void update(NhanVien entity) {
         try {
-            JdbcHelper.executeUpdate(update_Sql, entity.getHoTen(), entity.getDiaChi(), entity.getSdt(), entity.getCaLam(), entity.getLuongCB(), entity.getMaNV());
+            JdbcHelper.executeUpdate(update_Sql, entity.getHoTen(), entity.getDiaChi(),entity.getSdt(), entity.getCaLam(), entity.getLuongCB(), entity.getMaNV());
         } catch (Exception e) {
+            Logger.getLogger(NhanVien_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
 
@@ -73,7 +74,7 @@ public class NhanVien_DAO extends LandCoffee_DAO<NhanVien, String> {
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
                 entity.setMaNV(rs.getString("MANV"));
-                entity.setHoTen(rs.getString("HOTEN"));
+                entity.setHoTen(rs.getString("TENNV"));
                 entity.setDiaChi(rs.getString("DIACHI"));
                 entity.setSdt(rs.getString("SDT"));
                 entity.setCaLam(rs.getBoolean("CALAM"));
