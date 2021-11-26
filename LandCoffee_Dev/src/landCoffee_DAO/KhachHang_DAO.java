@@ -8,6 +8,7 @@ package landCoffee_DAO;
 import landCoffee_Entity.KhachHang;
 import helper.JdbcHelper;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,31 +19,31 @@ import java.util.logging.Logger;
  * @author Nguyễn Tiến Dũng
  */
 public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
-
-    String insert_Sql = "INSERT INTO KHACHHANG(MAKH,TENKH,DIACHI,SDT,DIEM,MANV) VALUES(?,?,?,?,?,?)";
+    
+    String insert_Sql = "INSERT INTO KHACHHANG(TENKH,DIACHI,SDT,MANV,DIEM) VALUES(?,?,?,?,?)";
     String update_Sql = "UPDATE KHACHHANG SET TENKH = ?, DIACHI = ?, SDT = ?, DIEM = ?, MANV = ? WHERE MAKH = ?";
     String delete_Sql = "DELETE FROM KHACHHANG WHERE MAKH = ?";
     String selectAll_Sql = "SELECT * FROM KHACHHANG";
     String selectById_Sql = "SELECT * FROM KHACHHANG WHERE MAKH = ?";
-
+    
     @Override
     public void insert(KhachHang entity) {
         try {
-            JdbcHelper.executeUpdate(insert_Sql, entity.getMaKH(), entity.getHoTen(), entity.getDiaChi(), entity.getSdt(), entity.getDiem(), entity.getManv());
+            JdbcHelper.executeUpdate(insert_Sql, entity.getHoTen(), entity.getDiaChi(), entity.getSdt(),  entity.getManv(),entity.getDiem());
         } catch (Exception e) {
             Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    
     @Override
     public void update(KhachHang entity) {
-        try {
-            JdbcHelper.executeUpdate(update_Sql, entity.getHoTen(), entity.getDiaChi(), entity.getSdt(), entity.getDiem(), entity.getManv(),entity.getMaKH());
+       try {
+            JdbcHelper.executeUpdate(update_Sql, entity.getHoTen(), entity.getDiaChi(), entity.getSdt(),entity.getDiem(),entity.getManv() ,entity.getMaKH());
         } catch (Exception e) {
             Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    
     @Override
     public void delete(String id) {
         try {
@@ -51,21 +52,21 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    
     @Override
     public List<KhachHang> selectAll() {
         return (List<KhachHang>) this.selectBySql(selectAll_Sql);
     }
-
+    
     @Override
     public KhachHang selectById(String id) {
-        List<KhachHang> list = (List<KhachHang>) this.selectBySql(selectById_Sql, id);
+        List<KhachHang> list = this.selectBySql(selectById_Sql, id);
         if (list.isEmpty()) {
             return null;
         }
         return list.get(0);
     }
-
+    
     @Override
     protected List<KhachHang> selectBySql(String sql, Object... args) {
         List<KhachHang> list = new ArrayList<>();
@@ -74,11 +75,11 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             while (rs.next()) {
                 KhachHang entity = new KhachHang();
                 entity.setMaKH(rs.getString("MAKH"));
-                entity.setHoTen(rs.getString("HOTEN"));
+                entity.setHoTen(rs.getString("TENKH"));
                 entity.setDiaChi(rs.getString("DIACHI"));
                 entity.setSdt(rs.getString("SDT"));
-                entity.setDiem(rs.getFloat("DIEM"));
                 entity.setManv(rs.getString("MANV"));
+                entity.setDiem(rs.getFloat("DIEM"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -88,5 +89,5 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             throw new RuntimeException(e);
         }
     }
-
+    
 }

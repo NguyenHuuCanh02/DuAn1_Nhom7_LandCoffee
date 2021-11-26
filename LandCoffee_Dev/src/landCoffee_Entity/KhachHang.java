@@ -2,27 +2,19 @@
 package landCoffee_Entity;
 
 public class KhachHang {
-    private String maKH,hoTen,diaChi,sdt,Manv;
+    private String hoTen,diaChi,sdt,Manv,maKH;
     private float diem;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String hoTen, String diaChi, String sdt, String Manv, float diem) {
-        this.maKH = maKH;
+    public KhachHang(String hoTen, String diaChi, String sdt, String Manv, String maKH, float diem) {
         this.hoTen = hoTen;
         this.diaChi = diaChi;
         this.sdt = sdt;
         this.Manv = Manv;
-        this.diem = diem;
-    }
-
-    public String getMaKH() {
-        return maKH;
-    }
-
-    public void setMaKH(String maKH) {
         this.maKH = maKH;
+        this.diem = diem;
     }
 
     public String getHoTen() {
@@ -57,6 +49,14 @@ public class KhachHang {
         this.Manv = Manv;
     }
 
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
+    }
+
     public float getDiem() {
         return diem;
     }
@@ -67,9 +67,8 @@ public class KhachHang {
 
     @Override
     public String toString() {
-        return "KhachHang{" + "maKH=" + maKH + ", hoTen=" + hoTen + ", diaChi=" + diaChi + ", sdt=" + sdt + ", Manv=" + Manv + ", diem=" + diem + '}';
+        return "KhachHang{" + "hoTen=" + hoTen + ", diaChi=" + diaChi + ", sdt=" + sdt + ", Manv=" + Manv + ", maKH=" + maKH + ", diem=" + diem + '}';
     }
-    
-    
+
     
 }
