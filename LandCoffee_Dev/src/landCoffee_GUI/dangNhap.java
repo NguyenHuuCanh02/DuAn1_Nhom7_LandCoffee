@@ -5,6 +5,7 @@
  */
 package landCoffee_GUI;
 
+import MDI.Landcoffe;
 import helper.Auth;
 import helper.JDialogHelper;
 import landCoffee_DAO.TaiKhoan_DAO;
@@ -22,6 +23,10 @@ public class dangNhap extends javax.swing.JFrame {
     public dangNhap() {
         initComponents();
         setLocationRelativeTo(null);
+    }
+
+    dangNhap(GiaoDienChinh aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -208,9 +213,11 @@ public class dangNhap extends javax.swing.JFrame {
             JDialogHelper.alert(this, "Sai mật khẩu");
         } else {
             Auth.user = nv;
+         JDialogHelper.alert(this, "Đăng nhập thành công");
             this.dispose();
-            GiaoDienChinh gdc = new GiaoDienChinh();
-            gdc.setVisible(true);
+            Landcoffe lc= new Landcoffe();
+            lc.setVisible(true);
+
         }
     }
 
@@ -219,4 +226,6 @@ public class dangNhap extends javax.swing.JFrame {
             System.exit(0);
         }
     }
+
+  
 }

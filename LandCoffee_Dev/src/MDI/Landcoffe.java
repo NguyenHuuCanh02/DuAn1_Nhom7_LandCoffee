@@ -289,7 +289,7 @@ public class Landcoffe extends javax.swing.JFrame {
         jlable5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jlable5.setForeground(new java.awt.Color(255, 255, 255));
         jlable5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User group.png"))); // NOI18N
-        jlable5.setText("Khác Hàng");
+        jlable5.setText("Khách Hàng");
 
         javax.swing.GroupLayout KhachHangLayout = new javax.swing.GroupLayout(KhachHang);
         KhachHang.setLayout(KhachHangLayout);
@@ -463,6 +463,14 @@ public class Landcoffe extends javax.swing.JFrame {
      
         TrangChu.setBackground(DefaultColor);
         MenuName.setText("Quản lý nhân viên");
+            if (Auth.isLogin()) {
+        QuanLyNhanVien nv = new QuanLyNhanVien();
+        Desktop.removeAll();;
+        Desktop.add(nv).setVisible(true);
+        }else{
+             JDialogHelper.alert(this, "Vui lòng đăng nhập ");
+            new dangNhap().setVisible(true);
+        }
     }//GEN-LAST:event_NhanVienMousePressed
 
     private void BanHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMousePressed
@@ -476,6 +484,14 @@ public class Landcoffe extends javax.swing.JFrame {
      
         TrangChu.setBackground(DefaultColor);
         MenuName.setText("Bán Hàng");
+         if (Auth.isLogin()) {
+        BanHang kh = new BanHang();
+        Desktop.removeAll();;
+        Desktop.add(kh).setVisible(true);
+           }else{
+             JDialogHelper.alert(this, "Vui lòng đăng nhập ");
+            new dangNhap().setVisible(true);
+        }
     }//GEN-LAST:event_BanHangMousePressed
 
     private void KhachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_KhachHangMousePressed
@@ -516,26 +532,12 @@ public class Landcoffe extends javax.swing.JFrame {
 
     private void BanHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanHangMouseClicked
         // TODO add your handling code here:
-        if (Auth.isLogin()) {
-        BanHang kh = new BanHang();
-        Desktop.removeAll();;
-        Desktop.add(kh).setVisible(true);
-           }else{
-             JDialogHelper.alert(this, "Vui lòng đăng nhập ");
-            new dangNhap().setVisible(true);
-        }
+       
     }//GEN-LAST:event_BanHangMouseClicked
 
     private void NhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NhanVienMouseClicked
         // TODO add your handling code here:
-        if (Auth.isLogin()) {
-        QuanLyNhanVien nv = new QuanLyNhanVien();
-        Desktop.removeAll();;
-        Desktop.add(nv).setVisible(true);
-        }else{
-             JDialogHelper.alert(this, "Vui lòng đăng nhập ");
-            new dangNhap().setVisible(true);
-        }
+    
     }//GEN-LAST:event_NhanVienMouseClicked
 
     private void ThongKeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ThongKeMousePressed
