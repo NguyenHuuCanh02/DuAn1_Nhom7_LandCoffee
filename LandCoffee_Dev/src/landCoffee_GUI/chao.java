@@ -7,6 +7,8 @@ package landCoffee_GUI;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 /**
  *
@@ -168,6 +170,7 @@ public class chao extends javax.swing.JFrame {
                 if (value == 100) {
                     chao.this.dispose();
                 }
+              
             }
         }).start();
     }
