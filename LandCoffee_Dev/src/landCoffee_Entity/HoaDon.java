@@ -50,7 +50,7 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return "HoaDon_entity{" + "maHD=" + maHD + ", maKH=" + maKH + ", maNV=" + maNV + ", tongTien=" + tongTien + '}';
+        return maHD;
     }
     
     

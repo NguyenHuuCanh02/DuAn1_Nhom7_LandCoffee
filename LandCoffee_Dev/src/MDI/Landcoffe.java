@@ -229,6 +229,11 @@ public class Landcoffe extends javax.swing.JFrame {
         jlable7.setForeground(new java.awt.Color(255, 255, 255));
         jlable7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Price list.png"))); // NOI18N
         jlable7.setText("Hóa đơn");
+        jlable7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlable7MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout HoaDonLayout = new javax.swing.GroupLayout(HoaDon);
         HoaDon.setLayout(HoaDonLayout);
@@ -290,6 +295,11 @@ public class Landcoffe extends javax.swing.JFrame {
         jlable5.setForeground(new java.awt.Color(255, 255, 255));
         jlable5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/User group.png"))); // NOI18N
         jlable5.setText("Khách Hàng");
+        jlable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlable5MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout KhachHangLayout = new javax.swing.GroupLayout(KhachHang);
         KhachHang.setLayout(KhachHangLayout);
@@ -604,6 +614,20 @@ public class Landcoffe extends javax.swing.JFrame {
     private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1MousePressed
+
+    private void jlable7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlable7MouseClicked
+        // TODO add your handling code here:
+        QuanLiHoaDon qlhd = new QuanLiHoaDon();
+        Desktop.add(qlhd);
+        qlhd.setVisible(true);
+    }//GEN-LAST:event_jlable7MouseClicked
+
+    private void jlable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlable5MouseClicked
+        // TODO add your handling code here:
+        QuanLyKhachHang qlkh = new QuanLyKhachHang();
+        Desktop.add(qlkh);
+        qlkh.setVisible(true);
+    }//GEN-LAST:event_jlable5MouseClicked
 
     /**
      * @param args the command line arguments

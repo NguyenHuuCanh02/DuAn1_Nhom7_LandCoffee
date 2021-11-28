@@ -24,7 +24,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     String delete_Sql = "DELETE FROM HOADONCHITIET WHERE MASP = ?";
     String selectAll_Sql = "SELECT * FROM HOADONCHITIET";
     String selectBy_Sql = "SELECT * FROM HOADONCHITIET WHERE MASP = ?";
-
+    String selectCT = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP ";
     @Override
     public void insert(HoaDonChiTiet entity) {
         try {
@@ -51,7 +51,28 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             Logger.getLogger(HoaDonChiTiet_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-
+    public List<HoaDonChiTiet> selectCT(){
+        List<HoaDonChiTiet> list = new ArrayList<>();
+         try {
+            ResultSet rs = JdbcHelper.executeQuery(selectCT);
+            while (rs.next()) {
+                HoaDonChiTiet entity = new HoaDonChiTiet();
+                entity.setMaSP(rs.getString("MASP"));
+                entity.setMaHD(rs.getString("MAHD"));
+                entity.setTongTien(rs.getFloat("TONGTIEN"));
+                entity.setSoLuong(rs.getInt("SOLUONG"));
+                entity.setNgayTao(rs.getDate("NGAYTAO"));
+                entity.setGia(rs.getFloat("GIA"));
+                entity.setTenSP(rs.getString("TENSP"));
+                list.add(entity);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
     @Override
     public List<HoaDonChiTiet> selectAll() {
         return this.selectBySql(selectAll_Sql);

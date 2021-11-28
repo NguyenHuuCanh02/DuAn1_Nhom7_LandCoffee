@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
 
-    String insert_Sql = "INSERT INTO KHACHHANG(MAKH,TENKH,DIACHI,SDT,DIEM,MANV) VALUES(?,?,?,?,?,?)";
+    String insert_Sql = "INSERT INTO KHACHHANG(TENKH,DIACHI,SDT,DIEM,MANV) VALUES(?,?,?,?,?)";
     String update_Sql = "UPDATE KHACHHANG SET TENKH = ?, DIACHI = ?, SDT = ?, DIEM = ?, MANV = ? WHERE MAKH = ?";
     String delete_Sql = "DELETE FROM KHACHHANG WHERE MAKH = ?";
     String selectAll_Sql = "SELECT * FROM KHACHHANG";
@@ -28,7 +28,7 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
     @Override
     public void insert(KhachHang entity) {
         try {
-            JdbcHelper.executeUpdate(insert_Sql, entity.getMaKH(), entity.getHoTen(), entity.getDiaChi(), entity.getSdt(), entity.getDiem(), entity.getManv());
+            JdbcHelper.executeUpdate(insert_Sql, entity.getHoTen(), entity.getDiaChi(), entity.getSdt(), entity.getDiem(), entity.getManv());
         } catch (Exception e) {
             Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -74,7 +74,7 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             while (rs.next()) {
                 KhachHang entity = new KhachHang();
                 entity.setMaKH(rs.getString("MAKH"));
-                entity.setHoTen(rs.getString("HOTEN"));
+                entity.setHoTen(rs.getString("TENKH"));
                 entity.setDiaChi(rs.getString("DIACHI"));
                 entity.setSdt(rs.getString("SDT"));
                 entity.setDiem(rs.getFloat("DIEM"));

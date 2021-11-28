@@ -14,19 +14,41 @@ import java.util.Date;
 public class HoaDonChiTiet {
     private String maSP,maHD;
     private int soLuong;
-    private float tongTien;
+    private float tongTien,gia;
     private Date ngayTao;
+    String tenSP;
+
+    public float getGia() {
+        return gia;
+    }
+
+    public void setGia(float gia) {
+        this.gia = gia;
+    }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
 
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(String maSP, String maHD, int soLuong, float tongTien, Date ngayTao) {
+    public HoaDonChiTiet(String maSP, String maHD, int soLuong, float tongTien, float gia, Date ngayTao, String tenSP) {
         this.maSP = maSP;
         this.maHD = maHD;
         this.soLuong = soLuong;
         this.tongTien = tongTien;
+        this.gia = gia;
         this.ngayTao = ngayTao;
+        this.tenSP = tenSP;
     }
+    
+
+ 
 
     public String getMaSP() {
         return maSP;

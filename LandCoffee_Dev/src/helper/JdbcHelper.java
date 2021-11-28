@@ -17,9 +17,9 @@ import java.util.logging.Logger;
  */
 public class JdbcHelper {
    static String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String dburl = "jdbc:sqlserver://localhost\\HUUTHANG\\SQLEXPRESS:1433;databaseName=qlcf";
+    static String dburl = "jdbc:sqlserver://localhost\\\\LAPTOP-S2HU53RT\\\\SQLEXPRESS:1433;databaseName=qlcf";
     static String user = "sa";
-    static String pass = "12345";
+    static String pass = "sa";
     
     static{
         try {
