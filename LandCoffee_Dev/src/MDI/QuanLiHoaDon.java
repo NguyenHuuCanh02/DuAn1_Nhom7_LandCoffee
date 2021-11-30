@@ -5,6 +5,7 @@
  */
 package MDI;
 
+import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -25,6 +26,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
     DefaultTableModel mol1, mol2;
     HoaDon_DAO hdDAO = new HoaDon_DAO();
     HoaDonChiTiet_DAO hdctDAO = new HoaDonChiTiet_DAO();
+    int index ;
 
     public QuanLiHoaDon() {
         initComponents();
@@ -49,17 +51,13 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         tblHoaDon = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         cboMaHD = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtMaHDCT = new javax.swing.JTextField();
+        txtMaKH = new javax.swing.JTextField();
+        txtTongTien = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblHoaDonChiTiet = new javax.swing.JTable();
 
@@ -88,20 +86,25 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tblHoaDonMouseClicked(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tblHoaDonMousePressed(evt);
+            }
         });
         jScrollPane1.setViewportView(tblHoaDon);
 
         jLabel1.setText("Mã hóa đơn");
 
         cboMaHD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("jButton1");
-
-        jButton2.setText("jButton2");
-
-        jButton3.setText("jButton3");
-
-        jButton4.setText("jButton4");
+        cboMaHD.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cboMaHDMouseClicked(evt);
+            }
+        });
+        cboMaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboMaHDActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,17 +114,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE)
                         .addGap(46, 46, 46))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -138,13 +131,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
                     .addComponent(cboMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addGap(51, 51, 51))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
 
         tabHoaDonChiTiet.addTab("Hóa đơn", jPanel1);
@@ -173,9 +160,8 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -183,29 +169,30 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
                             .addComponent(jLabel4))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1))))
-                .addContainerGap(34, Short.MAX_VALUE))
+                            .addComponent(txtMaHDCT, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                            .addComponent(txtMaKH)
+                            .addComponent(txtTongTien)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(43, 43, 43)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaHDCT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(269, Short.MAX_VALUE))
         );
 
         tabHoaDonChiTiet.addTab("Hóa đơn chi tiết", jPanel2);
@@ -226,19 +213,40 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         // TODO add your handling code here:
+
+
+    }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void tblHoaDonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMousePressed
+        // TODO add your handling code here:
+        index = tblHoaDon.getSelectedRow();
+
         try {
             if (evt.getClickCount() == 2) {
+
                 tabHoaDonChiTiet.setSelectedIndex(1);
+                fillForm();
+                fillTableHDCT(index);
+
             }
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_tblHoaDonMouseClicked
+    }//GEN-LAST:event_tblHoaDonMousePressed
+
+    private void cboMaHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaHDMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cboMaHDMouseClicked
+
+    private void cboMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMaHDActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_cboMaHDActionPerformed
 
     void init() {
         setTable();
         setCBO();
         fillTableHD();
-        fillTableHDCT();
 
     }
 
@@ -279,24 +287,27 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         }
     }
 
-    void fillTableHDCT() {
+    void fillTableHDCT(int index) {
         mol2 = (DefaultTableModel) tblHoaDonChiTiet.getModel();
         mol2.setRowCount(0);
         try {
-            List<HoaDonChiTiet> list = hdctDAO.selectCT();
-            for (HoaDonChiTiet x : list) {
-                Object[] row = {x.getTenSP(), x.getSoLuong(), x.getGia()};
-                mol2.addRow(row);
+            ResultSet rs = hdctDAO.getHDCTAndSP(Integer.parseInt(tblHoaDon.getValueAt(index, 0) + ""));
+            while (rs.next()) {
+                mol2.addRow(new Object[]{rs.getString(7), rs.getInt(4), rs.getFloat(8)});
             }
         } catch (Exception e) {
+            System.out.println("loi");
         }
     }
+
+    void fillForm() {
+        txtMaHDCT.setText(tblHoaDon.getValueAt(index, 1) + "");
+        txtMaKH.setText(tblHoaDon.getValueAt(index, 0) + "");
+        txtTongTien.setText(tblHoaDon.getValueAt(index, 3) + "");
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboMaHD;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -305,11 +316,11 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTabbedPane tabHoaDonChiTiet;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblHoaDonChiTiet;
+    private javax.swing.JTextField txtMaHDCT;
+    private javax.swing.JTextField txtMaKH;
+    private javax.swing.JTextField txtTongTien;
     // End of variables declaration//GEN-END:variables
 }

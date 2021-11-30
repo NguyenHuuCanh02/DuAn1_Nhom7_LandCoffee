@@ -7,6 +7,7 @@ package landCoffee_DAO;
 
 import landCoffee_Entity.HoaDonChiTiet;
 import helper.JdbcHelper;
+import java.awt.image.RescaleOp;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,8 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     String delete_Sql = "DELETE FROM HOADONCHITIET WHERE MASP = ?";
     String selectAll_Sql = "SELECT * FROM HOADONCHITIET";
     String selectBy_Sql = "SELECT * FROM HOADONCHITIET WHERE MASP = ?";
-    String selectCT = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP ";
+    String selectCT = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP where mahd = ?";
+//    String selectAllByMaHd = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP";
     @Override
     public void insert(HoaDonChiTiet entity) {
         try {
@@ -51,10 +53,10 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             Logger.getLogger(HoaDonChiTiet_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    public List<HoaDonChiTiet> selectCT(){
+    public List<HoaDonChiTiet> selectCT(String maHD){
         List<HoaDonChiTiet> list = new ArrayList<>();
          try {
-            ResultSet rs = JdbcHelper.executeQuery(selectCT);
+            ResultSet rs = JdbcHelper.executeQuery(selectCT,maHD);
             while (rs.next()) {
                 HoaDonChiTiet entity = new HoaDonChiTiet();
                 entity.setMaSP(rs.getString("MASP"));
@@ -108,5 +110,13 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             throw new RuntimeException(e);
         }
     }
-
+   
+    public static ResultSet getHDCTAndSP(int mahd){
+         HoaDonChiTiet_DAO   dao  = new HoaDonChiTiet_DAO();
+        return JdbcHelper.executeQuery(dao.selectCT,mahd);
+    }
+    
 }
+   
+
+
