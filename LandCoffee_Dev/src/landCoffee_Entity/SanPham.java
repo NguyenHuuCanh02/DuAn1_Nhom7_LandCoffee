@@ -59,7 +59,7 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return "SanPham{" + "maSP=" + maSP + ", tenSP=" + tenSP + ", maNV=" + maNV + ", hinh=" + hinh + ", gia=" + gia + '}';
+        return this.tenSP;
     }
 
 

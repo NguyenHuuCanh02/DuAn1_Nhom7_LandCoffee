@@ -27,6 +27,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     String selectBy_Sql = "SELECT * FROM HOADONCHITIET WHERE MASP = ?";
     String selectCT = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP where mahd = ?";
 //    String selectAllByMaHd = "SELECT *FROM HOADONCHITIET JOIN SANPHAM ON HOADONCHITIET.MASP = SANPHAM.MASP";
+
     @Override
     public void insert(HoaDonChiTiet entity) {
         try {
@@ -53,17 +54,18 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             Logger.getLogger(HoaDonChiTiet_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    public List<HoaDonChiTiet> selectCT(String maHD){
+
+    public List<HoaDonChiTiet> selectCT(String maHD) {
         List<HoaDonChiTiet> list = new ArrayList<>();
-         try {
-            ResultSet rs = JdbcHelper.executeQuery(selectCT,maHD);
+        try {
+            ResultSet rs = JdbcHelper.executeQuery(selectCT, maHD);
             while (rs.next()) {
                 HoaDonChiTiet entity = new HoaDonChiTiet();
                 entity.setMaSP(rs.getString("MASP"));
-                entity.setMaHD(rs.getString("MAHD"));
+                entity.setMaHD(rs.getInt("MAHD"));
                 entity.setTongTien(rs.getFloat("TONGTIEN"));
                 entity.setSoLuong(rs.getInt("SOLUONG"));
-                entity.setNgayTao(rs.getDate("NGAYTAO"));
+                entity.setNgayTao((rs.getDate("NGAYTAO")));
                 entity.setGia(rs.getFloat("GIA"));
                 entity.setTenSP(rs.getString("TENSP"));
                 list.add(entity);
@@ -75,6 +77,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public List<HoaDonChiTiet> selectAll() {
         return this.selectBySql(selectAll_Sql);
@@ -97,10 +100,10 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             while (rs.next()) {
                 HoaDonChiTiet entity = new HoaDonChiTiet();
                 entity.setMaSP(rs.getString("MASP"));
-                entity.setMaHD(rs.getString("MAHD"));
+                entity.setMaHD(rs.getInt("MAHD"));
                 entity.setTongTien(rs.getFloat("TONGTIEN"));
                 entity.setSoLuong(rs.getInt("SOLUONG"));
-                entity.setNgayTao(rs.getDate("NGAYTAO"));
+                entity.setNgayTao((rs.getDate("NGAYTAO")));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -110,13 +113,15 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
             throw new RuntimeException(e);
         }
     }
-   
-    public static ResultSet getHDCTAndSP(int mahd){
-         HoaDonChiTiet_DAO   dao  = new HoaDonChiTiet_DAO();
-        return JdbcHelper.executeQuery(dao.selectCT,mahd);
+
+    public List<HoaDonChiTiet> selectByKeyword(String keyWord) {
+        String sql = "SELECT * FROM HOADONCHITIET WHERE NGAYTAO LIKE ?";
+        return this.selectBySql(sql, "%" + keyWord + "%");
     }
-    
+
+    public static ResultSet getHDCTAndSP(int mahd) {
+        HoaDonChiTiet_DAO dao = new HoaDonChiTiet_DAO();
+        return JdbcHelper.executeQuery(dao.selectCT, mahd);
+    }
+
 }
-   
-
-

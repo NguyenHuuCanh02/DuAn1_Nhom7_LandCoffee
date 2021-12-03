@@ -19,7 +19,7 @@ import landCoffee_Entity.taiKhoan;
  */
 public class TaiKhoan_DAO extends LandCoffee_DAO<taiKhoan, String> {
 
-    String insert_Sql = "INSERT INTO TAIKHOAN(IDNV,MATKHAU,VAITRO) VALUES(?,?,?)";
+    String insert_Sql = "INSERT INTO TAIKHOAN(IDNV,MATKHAU,VAITRO,MANV) VALUES(?,?,?,?)";
     String update_Sql = "UPDATE TAIKHOAN SET MATKHAU = ? WHERE IDNV = ?";
     String delete_Sql = "DELETE FROM TAIKHOAN WHERE IDNV = ?";
     String selectAll_Sql = "SELECT * FROM TAIKHOAN";
@@ -28,7 +28,7 @@ public class TaiKhoan_DAO extends LandCoffee_DAO<taiKhoan, String> {
     @Override
     public void insert(taiKhoan entity) {
         try {
-            JdbcHelper.executeUpdate(insert_Sql, entity.getTaiKhoan(), entity.getMatKhau(), entity.isVaiTro());
+            JdbcHelper.executeUpdate(insert_Sql, entity.getTaiKhoan(), entity.getMatKhau(), entity.isVaiTro(), entity.getMaNV());
         } catch (Exception e) {
             Logger.getLogger(NhanVien_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -54,7 +54,7 @@ public class TaiKhoan_DAO extends LandCoffee_DAO<taiKhoan, String> {
 
     @Override
     public List<taiKhoan> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.selectBySql(selectAll_Sql);
     }
 
     @Override
@@ -76,6 +76,7 @@ public class TaiKhoan_DAO extends LandCoffee_DAO<taiKhoan, String> {
                 entity.setTaiKhoan(rs.getString("IDNV"));
                 entity.setMatKhau(rs.getString("MATKHAU"));
                 entity.setVaiTro(rs.getBoolean("VAITRO"));
+                entity.setMaNV(rs.getString("MANV"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();

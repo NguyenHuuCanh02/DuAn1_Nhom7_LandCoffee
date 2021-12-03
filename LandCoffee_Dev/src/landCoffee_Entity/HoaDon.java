@@ -3,24 +3,30 @@ package landCoffee_Entity;
 
 
 public class HoaDon {
-    private String maHD,maKH,maNV;
+    private String maKH,IDNV;
     private float tongTien;
-
+    private int maHD;
     public HoaDon() {
     }
 
-    public HoaDon(String maHD, String maKH, String maNV, float tongTien) {
+    public HoaDon(int maHD, String maKH, String IDNV, float tongTien) {
         this.maHD = maHD;
         this.maKH = maKH;
-        this.maNV = maNV;
+        this.IDNV = IDNV;
         this.tongTien = tongTien;
     }
 
-    public String getMaHD() {
+    public HoaDon(String maKH, String IDNV, float tongTien) {
+        this.maKH = maKH;
+        this.IDNV = IDNV;
+        this.tongTien = tongTien;
+    }
+
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 
@@ -32,12 +38,12 @@ public class HoaDon {
         this.maKH = maKH;
     }
 
-    public String getMaNV() {
-        return maNV;
+    public String getIDNV() {
+        return IDNV;
     }
 
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
+    public void setIDNV(String maNV) {
+        this.IDNV = IDNV;
     }
 
     public float getTongTien() {
@@ -50,7 +56,7 @@ public class HoaDon {
 
     @Override
     public String toString() {
-        return maHD;
+        return maHD+"";
     }
     
     

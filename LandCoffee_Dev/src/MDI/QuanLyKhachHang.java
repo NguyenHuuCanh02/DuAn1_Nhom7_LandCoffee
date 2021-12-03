@@ -5,6 +5,7 @@
  */
 package MDI;
 
+import helper.Auth;
 import helper.JDialogHelper;
 import helper.JdbcHelper;
 import helper.XValidated;
@@ -39,6 +40,8 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
 
     void init() {
         fillTable();
+        txtDiem.setText("0");
+        txtDiem.setEnabled(false);
         this.row = -1;
         this.updateStatus();
     }
@@ -65,7 +68,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         txtTenKH.setText(kh.getHoTen());
         txtDiaChi.setText(kh.getDiaChi());
         txtsdt.setText(kh.getSdt());
-        txtMaNV.setText(kh.getManv());
         txtDiem.setText(String.valueOf(kh.getDiem()));
     }
 
@@ -74,7 +76,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         kh.setHoTen(txtTenKH.getText());
         kh.setDiaChi(txtDiaChi.getText());
         kh.setSdt(txtsdt.getText());
-        kh.setManv(txtMaNV.getText());
+        kh.setManv(Auth.user.getMaNV());
         kh.setDiem(Float.parseFloat(txtDiem.getText()));
 
         return kh;
@@ -84,7 +86,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         txtTenKH.setBackground(white);
         txtDiaChi.setBackground(white);
         txtsdt.setBackground(white);
-        txtMaNV.setBackground(white);
         txtDiem.setBackground(white);
     }
 
@@ -216,9 +217,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         if (XValidated.checkSDT(txtsdt, "Số điện thoại không đúng định dạng!")) {
             return false;
         }
-        if (XValidated.checkRong(txtMaNV, "Không được để trống mã!")) {
-            return false;
-        }
         if (XValidated.checkRong(txtDiem, "Không được để trống điểm!")) {
 
             return false;
@@ -246,9 +244,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
         txtTenKH = new javax.swing.JTextField();
-        txtMaNV = new javax.swing.JTextField();
         jScrollPane4 = new javax.swing.JScrollPane();
         txtDiaChi = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
@@ -322,12 +318,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel27.setText("Số điện thoại");
 
-        jLabel28.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel28.setText("Mã Nhân Viên");
-
         txtTenKH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtMaNV.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         txtDiaChi.setColumns(20);
         txtDiaChi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
@@ -461,17 +452,16 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jScrollPane4)
                             .addComponent(txtTenKH, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel27)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(20, 20, 20))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -479,26 +469,19 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel22)
-                            .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel23)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel27)
-                            .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel28)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel22)
+                        .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(txtsdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtDiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addComponent(jLabel23)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -512,7 +495,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabs, javax.swing.GroupLayout.DEFAULT_SIZE, 863, Short.MAX_VALUE)
+                .addComponent(tabs)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -580,7 +563,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             kh.setDiem(Float.parseFloat(tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 5) + ""));
             kh.setHoTen(tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 1) + "");
             kh.setMaKH((tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 0) + ""));
-            kh.setManv(tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 4) + "");
+            //kh.setManv(tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 4) + "");
             kh.setSdt(tblKhachHang.getValueAt(tblKhachHang.getSelectedRow(), 3) + "");
             setForm(kh);
             updateStatus();
@@ -602,7 +585,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
@@ -612,7 +594,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
     private javax.swing.JTable tblKhachHang;
     private javax.swing.JTextArea txtDiaChi;
     private javax.swing.JTextField txtDiem;
-    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtTenKH;
     private javax.swing.JTextField txtsdt;
     // End of variables declaration//GEN-END:variables

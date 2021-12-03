@@ -5,6 +5,7 @@
  */
 package MDI;
 
+import helper.Auth;
 import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -26,7 +27,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
     DefaultTableModel mol1, mol2;
     HoaDon_DAO hdDAO = new HoaDon_DAO();
     HoaDonChiTiet_DAO hdctDAO = new HoaDonChiTiet_DAO();
-    int index ;
+    int index;
 
     public QuanLiHoaDon() {
         initComponents();
@@ -235,12 +236,12 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
 
     private void cboMaHDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaHDMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_cboMaHDMouseClicked
 
     private void cboMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMaHDActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_cboMaHDActionPerformed
 
     void init() {
@@ -259,7 +260,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         mol1.addColumn("Mã nhân viên");
         mol1.addColumn("Tổng tiền");
         mol2.setColumnCount(0);
-        String col[] = {"Sản phẩm", "Số lượng", "Giá tiền"};
+        String col[] = {"Sản phẩm", "Số lượng", "Giá tiền", "Thành tiền"};
         for (String x : col) {
             mol2.addColumn(x);
         }
@@ -280,20 +281,20 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         try {
             List<HoaDon> list = hdDAO.selectAll();
             for (HoaDon x : list) {
-                Object[] row = {x.getMaHD(), x.getMaKH(), x.getMaNV(), x.getTongTien()};
+                Object[] row = {x.getMaHD(), x.getMaKH(), x.getIDNV(), x.getTongTien()};
                 mol1.addRow(row);
             }
         } catch (Exception e) {
         }
     }
-
     void fillTableHDCT(int index) {
         mol2 = (DefaultTableModel) tblHoaDonChiTiet.getModel();
         mol2.setRowCount(0);
         try {
             ResultSet rs = hdctDAO.getHDCTAndSP(Integer.parseInt(tblHoaDon.getValueAt(index, 0) + ""));
             while (rs.next()) {
-                mol2.addRow(new Object[]{rs.getString(7), rs.getInt(4), rs.getFloat(8)});
+                int x = (int) (rs.getInt(4) * rs.getFloat(8));
+                mol2.addRow(new Object[]{rs.getString(7), rs.getInt(4), rs.getFloat(8),x});
             }
         } catch (Exception e) {
             System.out.println("loi");
@@ -301,8 +302,8 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
     }
 
     void fillForm() {
-        txtMaHDCT.setText(tblHoaDon.getValueAt(index, 1) + "");
-        txtMaKH.setText(tblHoaDon.getValueAt(index, 0) + "");
+        txtMaHDCT.setText(tblHoaDon.getValueAt(index, 0) + "");
+        txtMaKH.setText(tblHoaDon.getValueAt(index, 1) + "");
         txtTongTien.setText(tblHoaDon.getValueAt(index, 3) + "");
     }
 

@@ -10,15 +10,18 @@ package landCoffee_Entity;
  * @author nguye
  */
 public class taiKhoan {
-    String taiKhoan,matKhau;
+
+    String taiKhoan, matKhau, maNV;
     boolean vaiTro;
+
     public taiKhoan() {
     }
 
-    public taiKhoan(String taiKhoan, String matKhau, boolean vaiTro) {
+    public taiKhoan(String taiKhoan, String matKhau, boolean vaiTro, String maNV) {
         this.taiKhoan = taiKhoan;
         this.matKhau = matKhau;
         this.vaiTro = vaiTro;
+        this.maNV = maNV;
     }
 
     public String getTaiKhoan() {
@@ -41,9 +44,16 @@ public class taiKhoan {
         return vaiTro;
     }
 
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
     public void setVaiTro(boolean vaiTro) {
         this.vaiTro = vaiTro;
     }
 
-    
 }

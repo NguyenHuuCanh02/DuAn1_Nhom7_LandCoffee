@@ -68,6 +68,7 @@ public class dangNhap extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Tên Đăng Nhập ");
 
+        txtTK.setText("TK001");
         txtTK.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTKActionPerformed(evt);
@@ -92,6 +93,8 @@ public class dangNhap extends javax.swing.JFrame {
                 btnketthucActionPerformed(evt);
             }
         });
+
+        txtMatKhau.setText("001");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -12,8 +12,8 @@ import java.util.Date;
  * @author Dell
  */
 public class HoaDonChiTiet {
-    private String maSP,maHD;
-    private int soLuong;
+    private String maSP;
+    private int soLuong,maHD;
     private float tongTien,gia;
     private Date ngayTao;
     String tenSP;
@@ -37,7 +37,7 @@ public class HoaDonChiTiet {
     public HoaDonChiTiet() {
     }
 
-    public HoaDonChiTiet(String maSP, String maHD, int soLuong, float tongTien, float gia, Date ngayTao, String tenSP) {
+    public HoaDonChiTiet(String maSP, int maHD, int soLuong, float tongTien, float gia, Date ngayTao, String tenSP) {
         this.maSP = maSP;
         this.maHD = maHD;
         this.soLuong = soLuong;
@@ -45,6 +45,14 @@ public class HoaDonChiTiet {
         this.gia = gia;
         this.ngayTao = ngayTao;
         this.tenSP = tenSP;
+    }
+
+    public HoaDonChiTiet(String maSP, int soLuong, int maHD, float tongTien, Date ngayTao) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.maHD = maHD;
+        this.tongTien = tongTien;
+        this.ngayTao = ngayTao;
     }
     
 
@@ -58,11 +66,11 @@ public class HoaDonChiTiet {
         this.maSP = maSP;
     }
 
-    public String getMaHD() {
+    public int getMaHD() {
         return maHD;
     }
 
-    public void setMaHD(String maHD) {
+    public void setMaHD(int maHD) {
         this.maHD = maHD;
     }
 

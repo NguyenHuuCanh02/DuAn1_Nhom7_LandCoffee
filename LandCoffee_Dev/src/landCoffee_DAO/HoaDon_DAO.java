@@ -20,8 +20,8 @@ import java.util.logging.Logger;
  */
 public class HoaDon_DAO extends LandCoffee_DAO<HoaDon, String> {
 
-    String insert_Sql = "INSERT INTO HOADON(MAHD,TONGTIEN,MAKH,MANV) VALUES(?,?,?,?)";
-    String update_Sql = "UPDATE HOADON SET TONGTIEN = ?, MAKH = ?,MANV = ? WHERE MAHD = ?";
+    String insert_Sql = "INSERT INTO HOADON(TONGTIEN,MAKH,IDNV) VALUES(?,?,?)";
+    String update_Sql = "UPDATE HOADON SET TONGTIEN = ?, MAKH = ?,IDNV = ? WHERE MAHD = ?";
     String delete_Sql = "DELETE FROM HOADON WHERE MAHD = ?";
     String selectAll_Sql = "SELECT * FROM HOADON";
     String selectBy_Sql = "SELECT * FROM HOADON WHERE MAHD = ?";
@@ -30,7 +30,7 @@ public class HoaDon_DAO extends LandCoffee_DAO<HoaDon, String> {
     public void insert(HoaDon entity) {
         try {
             
-            JdbcHelper.executeUpdate(insert_Sql, entity.getMaHD(), entity.getTongTien(), entity.getMaKH(), entity.getMaNV());
+            JdbcHelper.executeUpdate(insert_Sql, entity.getTongTien(), entity.getMaKH(), entity.getIDNV());
         } catch (Exception e) {
             Logger.getLogger(HoaDon_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -39,7 +39,7 @@ public class HoaDon_DAO extends LandCoffee_DAO<HoaDon, String> {
     @Override
     public void update(HoaDon entity) {
         try {
-            JdbcHelper.executeUpdate(update_Sql, entity.getTongTien(), entity.getMaKH(), entity.getMaNV(), entity.getMaHD());
+            JdbcHelper.executeUpdate(update_Sql, entity.getTongTien(), entity.getMaKH(), entity.getIDNV(), entity.getMaHD());
         } catch (Exception e) {
             Logger.getLogger(HoaDon_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -75,10 +75,10 @@ public class HoaDon_DAO extends LandCoffee_DAO<HoaDon, String> {
             ResultSet rs = JdbcHelper.executeQuery(sql, args);
             while (rs.next()) {
                 HoaDon entity = new HoaDon();
-                entity.setMaHD(rs.getString("MAHD"));
+                entity.setMaHD(rs.getInt("MAHD"));
                 entity.setTongTien(rs.getFloat("TONGTIEN"));
                 entity.setMaKH(rs.getString("MAKH"));
-                entity.setMaNV(rs.getString("MANV"));
+                entity.setIDNV(rs.getString("IDNV"));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();

@@ -38,6 +38,7 @@ public class Landcoffe extends javax.swing.JFrame {
         ThongKe.setBackground(DefaultColor);
      
 
+
     }
 
     /**
@@ -76,6 +77,7 @@ public class Landcoffe extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -138,6 +140,9 @@ public class Landcoffe extends javax.swing.JFrame {
         Banhang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add to basket.png"))); // NOI18N
         Banhang.setText("Bán Hàng");
         Banhang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BanhangMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 BanhangMousePressed(evt);
             }
@@ -201,6 +206,11 @@ public class Landcoffe extends javax.swing.JFrame {
         jlable6.setForeground(new java.awt.Color(255, 255, 255));
         jlable6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Box.png"))); // NOI18N
         jlable6.setText("Sản Phẩm");
+        jlable6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlable6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout SanPhamLayout = new javax.swing.GroupLayout(SanPham);
         SanPham.setLayout(SanPhamLayout);
@@ -263,6 +273,9 @@ public class Landcoffe extends javax.swing.JFrame {
         jlable8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Statistics.png"))); // NOI18N
         jlable8.setText("Thống kê");
         jlable8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlable8MouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jlable8MousePressed(evt);
             }
@@ -439,6 +452,14 @@ public class Landcoffe extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem3);
+
+        jMenuItem4.setText("Tài khoản");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -629,6 +650,33 @@ public class Landcoffe extends javax.swing.JFrame {
         qlkh.setVisible(true);
     }//GEN-LAST:event_jlable5MouseClicked
 
+    private void BanhangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BanhangMouseClicked
+        // TODO add your handling code here:
+       BanHang bh = new BanHang();
+       Desktop.add(bh);
+       bh.setVisible(true);
+    }//GEN-LAST:event_BanhangMouseClicked
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        QuanLyTaiKhoan qltk = new QuanLyTaiKhoan();
+        qltk.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jlable8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlable8MouseClicked
+        // TODO add your handling code here:
+        ThongKe tk = new ThongKe();
+        Desktop.add(tk);
+        tk.setVisible(true);
+    }//GEN-LAST:event_jlable8MouseClicked
+
+    private void jlable6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlable6MouseClicked
+        // TODO add your handling code here:
+        QuanLySanPham1 qlsp = new QuanLySanPham1();
+        Desktop.add(qlsp);
+        qlsp.setVisible(true);
+    }//GEN-LAST:event_jlable6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -713,6 +761,7 @@ public class Landcoffe extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

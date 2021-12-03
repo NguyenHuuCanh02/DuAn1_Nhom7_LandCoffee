@@ -3,16 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/QuanLyKhachHang.java</file>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/landCoffee_DAO/KhachHang_DAO.java</file>
             <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/BanHang.java</file>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/TrangChu1.java</file>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/landCoffee_GUI/dangNhap.java</file>
             <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/QuanLiHoaDon.java</file>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/landCoffee_Entity/HoaDonChiTiet.java</file>
             <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/QuanLySanPham.java</file>
-            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/landCoffee_DAO/HoaDonChiTiet_DAO.java</file>
             <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/MDI/Landcoffe.java</file>
+            <file>file:/D:/JavaProJect/DuAn1_Nhom7_LandCoffee/DuAn1_Nhom7_LandCoffee/LandCoffee_Dev/src/landCoffee_Entity/SanPham.java</file>
         </group>
     </open-files>
 </project-private>
