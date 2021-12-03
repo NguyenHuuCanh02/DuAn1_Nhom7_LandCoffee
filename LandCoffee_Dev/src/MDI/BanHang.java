@@ -48,7 +48,7 @@ public class BanHang extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         init();
-        System.out.println(Auth.user.getTaiKhoan());
+        
     }
 
     /**
