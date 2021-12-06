@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import landCoffee_DAO.*;
 import landCoffee_Entity.HoaDon;
 import landCoffee_Entity.HoaDonChiTiet;
+import landCoffee_Entity.KhachHang;
 import landCoffee_Entity.SanPham;
 
 /**
@@ -31,6 +32,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
     DefaultTableModel mol1, mol2;
     HoaDon_DAO hdDAO = new HoaDon_DAO();
     HoaDonChiTiet_DAO hdctDAO = new HoaDonChiTiet_DAO();
+    KhachHang_DAO khDAO = new KhachHang_DAO();
     int index;
     String date = String.valueOf(LocalDate.now());
     SanPham_DAO daoSP = new SanPham_DAO();
@@ -499,6 +501,9 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
                 int sl = Integer.parseInt(tblHoaDonChiTiet.getValueAt(xy, 1) + "");
                 suaHDCT(xy, sl);
             }
+            float diem = tongTien/100000;
+            KhachHang kh = new KhachHang(txtMaKH.getText(), diem);
+            khDAO.updateDiem(kh);
             JDialogHelper.alert(this, "Cập nhật trạng thái thành công");
             find(date);
 

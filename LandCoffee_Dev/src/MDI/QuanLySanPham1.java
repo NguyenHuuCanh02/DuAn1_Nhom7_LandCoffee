@@ -52,11 +52,9 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
         txtMaSP = new javax.swing.JTextField();
         txtTenSP = new javax.swing.JTextField();
         txtGia = new javax.swing.JTextField();
-        txtMaNV = new javax.swing.JTextField();
         lblAvatar = new javax.swing.JLabel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -87,18 +85,9 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
         jLabel33.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel33.setText("Giá");
 
-        jLabel34.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel34.setText("Mã nhân viên");
-
         txtGia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiaActionPerformed(evt);
-            }
-        });
-
-        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaNVActionPerformed(evt);
             }
         });
 
@@ -183,14 +172,12 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel32)
                                     .addComponent(jLabel31)
-                                    .addComponent(jLabel33)
-                                    .addComponent(jLabel34))
+                                    .addComponent(jLabel33))
                                 .addGap(41, 41, 41)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMaSP)
+                                    .addComponent(txtMaSP, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
                                     .addComponent(txtTenSP)
-                                    .addComponent(txtGia)
-                                    .addComponent(txtMaNV, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                                    .addComponent(txtGia))
                                 .addGap(135, 135, 135)
                                 .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18))
@@ -232,13 +219,9 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
                         .addGap(36, 36, 36)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel33))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34)))
+                            .addComponent(jLabel33)))
                     .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(59, 59, 59)
+                .addGap(85, 85, 85)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,7 +231,7 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
                     .addComponent(btnLast, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnFirst, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         tabs.addTab("Cập nhật", jPanel5);
@@ -303,10 +286,6 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaNVActionPerformed
 
     private void txtGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaActionPerformed
         // TODO add your handling code here:
@@ -388,7 +367,6 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
@@ -396,7 +374,6 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane tabs;
     private javax.swing.JTable tblSanPham;
     private javax.swing.JTextField txtGia;
-    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtMaSP;
     private javax.swing.JTextField txtTenSP;
     // End of variables declaration//GEN-END:variables
@@ -430,7 +407,6 @@ void init() {
         txtMaSP.setText("");
         txtTenSP.setText("");
         txtGia.setText("");
-        txtMaNV.setText("");
         this.updateStatus();
         btnThem.setEnabled(true);
         btnSua.setEnabled(false);
@@ -442,7 +418,7 @@ void init() {
         sp.setGia(Float.parseFloat(txtGia.getText()));
         sp.setMaSP(txtMaSP.getText());
         sp.setTenSP(txtTenSP.getText());
-        sp.setMaNV(txtMaNV.getText());
+        sp.setMaNV(Auth.user.getMaNV());
         return sp;
     }
 
@@ -450,7 +426,6 @@ void init() {
         txtMaSP.setText(sp.getMaSP());
         txtTenSP.setText(sp.getTenSP());
         txtGia.setText(String.valueOf(sp.getGia()));
-        txtMaNV.setText(sp.getMaNV());
     }
     void insert() {
         SanPham nh = getForm();

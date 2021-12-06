@@ -725,7 +725,6 @@ public class Landcoffe extends javax.swing.JFrame {
     void doiMatKhau() {
    if (Auth.isLogin()) {
             doiMatKhau dmk = new doiMatKhau();
-            Desktop.add(dmk);
             dmk.setVisible(true);
 
         } else {

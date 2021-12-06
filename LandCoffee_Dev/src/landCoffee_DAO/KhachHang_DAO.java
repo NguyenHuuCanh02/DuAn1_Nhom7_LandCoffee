@@ -42,6 +42,14 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
     }
+    public void updateDiem(KhachHang entity) {
+        try {
+            String sql = "update KHACHHANG set diem = ? where makh = ?";
+            JdbcHelper.executeUpdate(sql, entity.getDiem(),entity.getMaKH());
+        } catch (Exception e) {
+            Logger.getLogger(KhachHang_DAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
 
     @Override
     public void delete(String id) {

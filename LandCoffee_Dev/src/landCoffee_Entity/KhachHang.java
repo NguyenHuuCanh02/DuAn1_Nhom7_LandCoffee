@@ -8,6 +8,11 @@ public class KhachHang {
     public KhachHang() {
     }
 
+    public KhachHang(String maKH, float diem) {
+        this.maKH = maKH;
+        this.diem = diem;
+    }
+
     public KhachHang(String maKH, String hoTen, String diaChi, String sdt, String Manv, float diem) {
         this.maKH = maKH;
         this.hoTen = hoTen;

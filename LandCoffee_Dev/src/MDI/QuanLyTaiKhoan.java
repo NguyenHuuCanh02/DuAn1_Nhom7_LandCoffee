@@ -5,6 +5,7 @@
  */
 package MDI;
 
+import helper.Auth;
 import helper.JDialogHelper;
 import helper.XValidated;
 import java.awt.Component;
@@ -553,20 +554,4 @@ public class QuanLyTaiKhoan extends javax.swing.JFrame {
         }
     }
 
-    private static class Auth {
-
-        public static taiKhoan user = null;
-
-        public static void clear() {
-            Auth.user = null;
-        }
-
-        public static boolean isLogin() {
-            return Auth.user != null;
-        }
-
-        public static boolean isManager() {
-            return Auth.isLogin() && user.isVaiTro();
-        }
-    }
 }
