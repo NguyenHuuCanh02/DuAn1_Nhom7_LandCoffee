@@ -10,6 +10,7 @@ import helper.JDialogHelper;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -476,6 +477,7 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         moll.setRowCount(0);
         String keyword = date;
         List<HoaDon> list = hdDAO.selectByKeyword(keyword);
+        Collections.reverse(list);
         for (int x = 0; x < list.size(); x++) {
             if (x > 0 && list.get(x).getMaHD() == list.get(x - 1).getMaHD()) {
                 continue;
