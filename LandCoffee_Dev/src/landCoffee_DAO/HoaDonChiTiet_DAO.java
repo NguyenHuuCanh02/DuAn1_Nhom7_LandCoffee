@@ -22,6 +22,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
 
     String insert_Sql = "INSERT INTO HOADONCHITIET(MASP,MAHD,TONGTIEN,SOLUONG,NGAYTAO) VALUES(?,?,?,?,?)";
     String update_Sql = "UPDATE HOADONCHITIET SET MAHD = ?, TONGTIEN = ?,SOLUONG = ?,NGAYTAO= ? WHERE MASP = ?";
+    String update_Sql1 = "UPDATE HOADONCHITIET set TONGTIEN = ?,SOLUONG = ?,NGAYTAO= ? WHERE MASP = ? and mahd = ?";
     String delete_Sql = "DELETE FROM HOADONCHITIET WHERE MASP = ?";
     String selectAll_Sql = "SELECT * FROM HOADONCHITIET";
     String selectBy_Sql = "SELECT * FROM HOADONCHITIET WHERE MASP = ?";
@@ -40,7 +41,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     @Override
     public void update(HoaDonChiTiet entity) {
         try {
-            JdbcHelper.executeUpdate(update_Sql, entity.getMaHD(), entity.getTongTien(), entity.getSoLuong(), entity.getNgayTao(), entity.getMaSP());
+            JdbcHelper.executeUpdate(update_Sql1, entity.getTongTien(), entity.getSoLuong(), entity.getNgayTao(), entity.getMaSP(), entity.getMaHD());
         } catch (Exception e) {
             Logger.getLogger(HoaDonChiTiet_DAO.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -117,6 +118,13 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     public List<HoaDonChiTiet> selectByKeyword(String keyWord) {
         String sql = "SELECT * FROM HOADONCHITIET WHERE NGAYTAO LIKE ?";
         return this.selectBySql(sql, "%" + keyWord + "%");
+    }
+
+    public List<HoaDonChiTiet> selectHoaDonByKeyword(int keyWord) {
+        String sql = "	select *\n" +
+"	from HOADONCHITIET join hoadon on HOADONCHITIET.MAHD = hoadon.MAHD \n" +
+"	where hoadon.MAKH = ?";
+        return this.selectBySql(sql,keyWord);
     }
 
     public static ResultSet getHDCTAndSP(int mahd) {

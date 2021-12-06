@@ -59,7 +59,7 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
 
     @Override
     public KhachHang selectById(String id) {
-        List<KhachHang> list = (List<KhachHang>) this.selectBySql(selectById_Sql, id);
+        List<KhachHang> list =  this.selectBySql(selectById_Sql, id);
         if (list.isEmpty()) {
             return null;
         }
@@ -87,6 +87,10 @@ public class KhachHang_DAO extends LandCoffee_DAO<KhachHang, String> {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
+    }
+        public List<KhachHang> selectByKeyword(String keyWord) {
+        String sql = "SELECT * FROM KHACHHANG WHERE TENKH LIKE ?";
+        return this.selectBySql(sql, "%" + keyWord + "%");
     }
 
 }

@@ -41,6 +41,8 @@ public class BanHang extends javax.swing.JInternalFrame {
     boolean checkRow = false;
     int count = 0;
     int maHD = 1;
+    int maKH;
+    String maKH1;
 
     public BanHang() {
         initComponents();
@@ -48,7 +50,7 @@ public class BanHang extends javax.swing.JInternalFrame {
         BasicInternalFrameUI ui = (BasicInternalFrameUI) this.getUI();
         ui.setNorthPane(null);
         init();
-        
+
     }
 
     /**
@@ -71,10 +73,6 @@ public class BanHang extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
         cboMenu = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -92,6 +90,7 @@ public class BanHang extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txtMaKH = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,22 +125,6 @@ public class BanHang extends javax.swing.JInternalFrame {
         jLabel14.setText("jLabel9");
         jLabel14.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jCheckBox1.setBackground(new java.awt.Color(51, 0, 0));
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("Cafe Đen");
-
-        jCheckBox2.setBackground(new java.awt.Color(51, 0, 0));
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("Cafe Sữa");
-
-        jCheckBox3.setBackground(new java.awt.Color(51, 0, 0));
-        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setText("Cam ép");
-
-        jCheckBox4.setBackground(new java.awt.Color(51, 0, 0));
-        jCheckBox4.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox4.setText("Trà sữa");
-
         cboMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -150,59 +133,30 @@ public class BanHang extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jCheckBox1)))
-                .addGap(44, 44, 44)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jCheckBox2)))
-                .addGap(53, 53, 53)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jCheckBox3)))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox4)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addComponent(jLabel11)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel12)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel13)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox3))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jCheckBox1))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(cboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox2)
-                                    .addComponent(jCheckBox4))))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cboMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jTabbedPane5.addTab("Đồ uống", jPanel4);
@@ -297,7 +251,7 @@ public class BanHang extends javax.swing.JInternalFrame {
         });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Save as.png"))); // NOI18N
-        jButton1.setText("Lưu và in hóa đơn");
+        jButton1.setText("Tạo hóa đơn");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -310,6 +264,13 @@ public class BanHang extends javax.swing.JInternalFrame {
         txtMaKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaKHActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -344,6 +305,9 @@ public class BanHang extends javax.swing.JInternalFrame {
                             .addComponent(jLabel1))
                         .addGap(37, 37, 37)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(txtTienTraLai)
                             .addComponent(txtTongTien)
                             .addComponent(txtTienKhachDua)
@@ -354,7 +318,9 @@ public class BanHang extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jTabbedPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -426,6 +392,7 @@ public class BanHang extends javax.swing.JInternalFrame {
 
             txtTongTien.setText(tongTien + "");
             boDo();
+            count--;
         } else {
             JDialogHelper.alert(this, "Chưa chọn đồ cần bỏ");
         }
@@ -455,8 +422,11 @@ public class BanHang extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(count==0){
+            JDialogHelper.alert(this, "Chưa thêm đồ uống");
+        }
         checkMaKH();
-        if (checkMaKH() == true) {
+        if (checkMaKH() == true&&count!=0) {
             themHD();
             List<HoaDon> list = hdDAO.selectAll();
             int x = list.size();
@@ -466,6 +436,7 @@ public class BanHang extends javax.swing.JInternalFrame {
                 int sl = Integer.parseInt(tblBang.getValueAt(xy, 1) + "");
                 themHDCT(xy, sl);
             }
+            JDialogHelper.alert(this, "Tạo hóa đơn thành công");
         }
 
         // themHDCT();
@@ -474,12 +445,22 @@ public class BanHang extends javax.swing.JInternalFrame {
     private void txtTongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTongTienActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        boolean s = checkMaKH();
+        if (s == true) {
+            System.out.println("ok");
+        } else {
+            System.out.println("sai");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
     void init() {
         setTable();
         setCBO();
         txtTienTraLai.setEnabled(false);
     }
- 
+
     void setTable() {
         mol = (DefaultTableModel) tblBang.getModel();
         mol.setColumnCount(0);
@@ -500,34 +481,38 @@ public class BanHang extends javax.swing.JInternalFrame {
     }
 
     boolean checkMaKH() {
-        List<KhachHang> list = khDAO.selectAll();
-        boolean check = false;
-        for (KhachHang x : list) {
-            if (txtMaKH.getText().equalsIgnoreCase(x.getMaKH())) {
-                check = true;
-                break;
-            } else {
-                check = false;
-            }
+        if (txtMaKH.getText().equalsIgnoreCase("")) {
+            return true;
         }
-        return check;
+        try {
+            maKH = Integer.parseInt(txtMaKH.getText() + "");
+        } catch (Exception e) {
+            JDialogHelper.alert(this, "Mã khách hàng phải là 1 số");
+            txtMaKH.requestFocus();
+            return false;
+        }
+        KhachHang list = khDAO.selectById(txtMaKH.getText() + "");
+
+        if (list != null) {
+            return true;
+        } else {
+            JDialogHelper.alert(this, "Không tìm thấy mã khách hàng");
+            txtMaKH.requestFocus();
+            return false;
+        }
     }
 
     HoaDon getForm() {
-        String maKH;
-
-        if (txtMaKH.getText().equalsIgnoreCase("")) {
-            maKH = "1";
-        } else {
-            try {
-                Integer.parseInt(txtMaKH.getText()+"");
-                maKH = txtMaKH.getText();
-            } catch (Exception e) {
-            }
-
+        try {
+            Integer.parseInt(txtMaKH.getText() + "");
+            String maKH = txtMaKH.getText();
+        } catch (Exception e) {
         }
-
-        return new HoaDon(txtMaKH.getText(), Auth.user.getTaiKhoan(), tongTien);
+        if (txtMaKH.getText().equalsIgnoreCase("")) {
+            return new HoaDon("1", Auth.user.getTaiKhoan(), tongTien, false);
+        } else {
+            return new HoaDon(txtMaKH.getText(), Auth.user.getTaiKhoan(), tongTien, false);
+        }
 
     }
 
@@ -542,7 +527,8 @@ public class BanHang extends javax.swing.JInternalFrame {
         }
     }
 
-    void themHDCT(int rowSel, int SL) {
+    void themHDCT(int rowSel, int SL
+    ) {
         try {
             HoaDonChiTiet hdct = getForm1(rowSel, SL);
             hdctDAO.insert(hdct);
@@ -552,7 +538,8 @@ public class BanHang extends javax.swing.JInternalFrame {
         }
     }
 
-    HoaDonChiTiet getForm1(int rowSel, int SL) {
+    HoaDonChiTiet getForm1(int rowSel, int SL
+    ) {
 
         List<SanPham> list = daoSP.selectAll();
         Date date = Date.valueOf(LocalDate.now());
@@ -599,7 +586,6 @@ public class BanHang extends javax.swing.JInternalFrame {
                 } else {
                     checkTrungSP = true;
                 }
-                // System.out.println(tblBang.getValueAt(x, 3) + "");
             }
 
         } else {
@@ -635,12 +621,9 @@ public class BanHang extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cboMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

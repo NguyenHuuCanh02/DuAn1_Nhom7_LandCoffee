@@ -18,6 +18,19 @@ public class HoaDonChiTiet {
     private Date ngayTao;
     String tenSP;
 
+    public HoaDonChiTiet(int maHD, float tongTien, Date ngayTao) {
+        this.maHD = maHD;
+        this.tongTien = tongTien;
+        this.ngayTao = ngayTao;
+    }
+
+    public HoaDonChiTiet(String maSP, int soLuong, int maHD, float tongTien) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.maHD = maHD;
+        this.tongTien = tongTien;
+    }
+
     public float getGia() {
         return gia;
     }
