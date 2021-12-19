@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
 
-    String insert_Sql = "INSERT INTO HOADONCHITIET(MASP,MAHD,TONGTIEN,SOLUONG,NGAYTAO) VALUES(?,?,?,?,?)";
+    String insert_Sql = "INSERT INTO HOADONCHITIET(MASP,MAHD,TONGTIEN,SOLUONG,NGAYTAO,GHICHU) VALUES(?,?,?,?,?,?)";
     String update_Sql = "UPDATE HOADONCHITIET SET MAHD = ?, TONGTIEN = ?,SOLUONG = ?,NGAYTAO= ? WHERE MASP = ?";
     String update_Sql1 = "UPDATE HOADONCHITIET set TONGTIEN = ?,SOLUONG = ?,NGAYTAO= ? WHERE MASP = ? and mahd = ?";
     String delete_Sql = "DELETE FROM HOADONCHITIET WHERE MASP = ?";
@@ -32,7 +32,7 @@ public class HoaDonChiTiet_DAO extends LandCoffee_DAO<HoaDonChiTiet, String> {
     @Override
     public void insert(HoaDonChiTiet entity) {
         try {
-            JdbcHelper.executeUpdate(insert_Sql, entity.getMaSP(), entity.getMaHD(), entity.getTongTien(), entity.getSoLuong(), entity.getNgayTao());
+            JdbcHelper.executeUpdate(insert_Sql, entity.getMaSP(), entity.getMaHD(), entity.getTongTien(), entity.getSoLuong(), entity.getNgayTao(),entity.getGhiChu());
         } catch (Exception e) {
             Logger.getLogger(HoaDonChiTiet_DAO.class.getName()).log(Level.SEVERE, null, e);
         }

@@ -30,6 +30,7 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
     int index = 0;
     String StrHinhAnh = "";
     SanPham_DAO dao = new SanPham_DAO();
+    boolean sua = false;
 
     /**
      * Creates new form QuanLy
@@ -294,9 +295,11 @@ public class QuanLySanPham1 extends javax.swing.JInternalFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
+        sua = true;
         if (checkDL() == true) {
             update();
         }
+        sua = false;
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
@@ -522,7 +525,7 @@ void init() {
             return false;
         }
         SanPham sanPham = dao.selectById(txtMaSP.getText());
-        if (sanPham != null) {
+        if (sanPham != null && sua == false) {
             JDialogHelper.alert(this, "Mã sản phẩm đã tồn tại");
             txtMaSP.requestFocus();
             return false;

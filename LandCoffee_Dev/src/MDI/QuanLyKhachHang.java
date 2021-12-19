@@ -10,6 +10,7 @@ import helper.JDialogHelper;
 import helper.JdbcHelper;
 import helper.XValidated;
 import static java.awt.Color.white;
+import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
@@ -116,6 +117,8 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
     }
 
     void clearForm() {
+        DefaultTableModel mol = (DefaultTableModel) tblLichSuMuaHang.getModel();
+        mol.setRowCount(0);
         KhachHang kh = new KhachHang();
         setTrang();
         this.setForm(kh);
@@ -127,9 +130,10 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         String makh = (String) tblKhachHang.getValueAt(this.row, 0);
         KhachHang kh = dao.selectById(makh);
         this.setForm(kh);
-        tabs.setSelectedIndex(0);
+        tabs.setSelectedIndex(1);
         this.updateStatus();
-        ;
+        tblKhachHang.setRowSelectionInterval(this.row, this.row);
+       fillLichSuMuaHang(Integer.parseInt(kh.getMaKH()));
     }
 
     void updateStatus() {
@@ -139,7 +143,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
 
         // Trạng thái form
         btnThem.setEnabled(!edit);
-        btnSua.setEnabled(!edit);
+        btnSua.setEnabled(edit);
         btnXoa.setEnabled(!edit);
 
         // Trạng thái điều hướng
@@ -304,7 +308,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Quản lý khách hàng");
 
-        tblKhachHang.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tblKhachHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -331,6 +334,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tblKhachHang);
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Zoom.png"))); // NOI18N
         jButton1.setText("Tìm");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -347,7 +351,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTimTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTimTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)))
                 .addContainerGap())
@@ -357,7 +361,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(94, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTimTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addGap(31, 31, 31)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,30 +370,21 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
 
         tabs.addTab("Danh sách", jPanel2);
 
-        jLabel22.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jPanel4.setBackground(new java.awt.Color(51, 255, 255));
+
         jLabel22.setText("Tên khách hàng");
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel23.setText("Địa chỉ");
 
-        jLabel27.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel27.setText("Số điện thoại");
 
-        txtTenKH.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         txtDiaChi.setColumns(20);
-        txtDiaChi.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
         txtDiaChi.setRows(5);
         jScrollPane4.setViewportView(txtDiaChi);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Điểm");
 
-        txtDiem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        txtsdt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
-        btnThem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Add.png"))); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,15 +392,17 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnSua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Notes.png"))); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.setMaximumSize(new java.awt.Dimension(93, 33));
+        btnSua.setMinimumSize(new java.awt.Dimension(93, 33));
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuaActionPerformed(evt);
             }
         });
 
-        btnXoa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -413,7 +410,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnMoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Refresh.png"))); // NOI18N
         btnMoi.setText("Mới");
         btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -421,7 +418,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnFirt.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnFirt.setText("|<");
         btnFirt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -429,7 +425,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnPrev.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnPrev.setText("<");
         btnPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -437,7 +432,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnNext.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnNext.setText(">");
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -445,7 +439,6 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             }
         });
 
-        btnLast.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnLast.setText(">|");
         btnLast.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -459,14 +452,14 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addComponent(btnThem)
+                .addGap(18, 18, 18)
+                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(btnXoa)
+                .addGap(29, 29, 29)
+                .addComponent(btnMoi)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                 .addComponent(btnFirt, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -481,13 +474,13 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
-                    .addComponent(btnSua)
                     .addComponent(btnXoa)
                     .addComponent(btnMoi)
                     .addComponent(btnFirt)
                     .addComponent(btnPrev)
                     .addComponent(btnNext)
-                    .addComponent(btnLast))
+                    .addComponent(btnLast)
+                    .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -557,7 +550,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         tabs.addTab("Cập Nhật", jPanel4);
@@ -613,7 +606,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-      //  delete();
+        delete();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
@@ -642,6 +635,7 @@ public class QuanLyKhachHang extends javax.swing.JInternalFrame {
             setForm(kh);
             System.out.println(soMaKH);
             fillLichSuMuaHang(soMaKH);
+            row = tblKhachHang.getSelectedRow();
             updateStatus();
         }
 

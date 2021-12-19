@@ -16,7 +16,36 @@ public class HoaDonChiTiet {
     private int soLuong,maHD;
     private float tongTien,gia;
     private Date ngayTao;
-    String tenSP;
+    String tenSP,ghiChu;
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
+
+    public HoaDonChiTiet(String maSP, int soLuong, int maHD, float tongTien, Date ngayTao, String ghiChu) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.maHD = maHD;
+        this.tongTien = tongTien;
+        this.ngayTao = ngayTao;
+        this.ghiChu = ghiChu;
+    }
+
+    public HoaDonChiTiet(String maSP, int soLuong, int maHD, float tongTien, float gia, Date ngayTao, String tenSP, String ghiChu) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.maHD = maHD;
+        this.tongTien = tongTien;
+        this.gia = gia;
+        this.ngayTao = ngayTao;
+        this.tenSP = tenSP;
+        this.ghiChu = ghiChu;
+    }
+    
 
     public HoaDonChiTiet(int maHD, float tongTien, Date ngayTao) {
         this.maHD = maHD;

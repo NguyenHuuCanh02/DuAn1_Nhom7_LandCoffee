@@ -383,10 +383,11 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         mol1.setColumnCount(0);
         mol1.addColumn("Mã hóa đơn");
         mol1.addColumn("Mã khách hàng");
+        mol1.addColumn("Tên khách hàng");
         mol1.addColumn("Tổng tiền");
         mol1.addColumn("Trạng thái");
         mol2.setColumnCount(0);
-        String col[] = {"Sản phẩm", "Số lượng", "Giá tiền", "Thành tiền"};
+        String col[] = {"Sản phẩm", "Số lượng", "Giá tiền", "Thành tiền","Ghi chú"};
         for (String x : col) {
             mol2.addColumn(x);
         }
@@ -430,8 +431,9 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
         try {
             ResultSet rs = hdctDAO.getHDCTAndSP(Integer.parseInt(tblHoaDon.getValueAt(index, 0) + ""));
             while (rs.next()) {
-                int x = (int) (rs.getInt(4) * rs.getFloat(8));
-                mol2.addRow(new Object[]{rs.getString(7), rs.getInt(4), rs.getFloat(8), x});
+                int x = (int) (rs.getInt(4) * rs.getFloat(9));
+                float tTien = Float.parseFloat(txtTongTien.getText()+"");
+                mol2.addRow(new Object[]{rs.getString(8), rs.getInt(4), rs.getFloat(9), tTien,rs.getString(6)});
             }
         } catch (Exception e) {
             System.out.println("loi");
@@ -442,8 +444,8 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
 
         txtMaHDCT.setText(tblHoaDon.getValueAt(index, 0) + "");
         txtMaKH.setText(tblHoaDon.getValueAt(index, 1) + "");
-        txtTongTien.setText(tblHoaDon.getValueAt(index, 2) + "");
-        String trangThai = tblHoaDon.getValueAt(index, 3) + "";
+        txtTongTien.setText(tblHoaDon.getValueAt(index, 3) + "");
+        String trangThai = tblHoaDon.getValueAt(index, 4) + "";
         if (trangThai.equalsIgnoreCase("Chưa thanh toán")) {
             cboTrangThai.setSelectedIndex(0);
             setTrangThai1();
@@ -482,7 +484,9 @@ public class QuanLiHoaDon extends javax.swing.JInternalFrame {
             if (x > 0 && list.get(x).getMaHD() == list.get(x - 1).getMaHD()) {
                 continue;
             }
-            moll.addRow(new Object[]{list.get(x).getMaHD(), list.get(x).getMaKH(),
+            KhachHang kh = khDAO.selectById(list.get(x).getMaKH());
+            
+            moll.addRow(new Object[]{list.get(x).getMaHD(),kh.getMaKH(), kh.getHoTen(),
                 list.get(x).getTongTien(), list.get(x).isTrangThai() ? "Đã thanh toán" : "Chưa thanh toán"});
         }
     }
